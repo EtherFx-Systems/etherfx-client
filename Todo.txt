@@ -1,0 +1,17 @@
+- Python Interface
+    - Class Generator
+        - ABC Classes that represent ether classes
+    - Import override
+        - Create Importer
+    - Faux classes
+        - Promise
+        - Type Segregation
+        - Message Building
+- Network
+    - Serialization
+        - Run the pyarrow serialization
+        - Deserialization
+    - Endpoints
+        - Pack into binary and send to server
+        - Receive results on exec
+        - Block exec on pending result
