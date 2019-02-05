@@ -2,7 +2,7 @@ import importlib.util as imp
 import sys
 import types
 
-from etherfx.classes.ProxyModule import ProxyModule
+from ether._internal.classes.ProxyModule import ProxyModule
 
 
 class EtherLoader(object):
