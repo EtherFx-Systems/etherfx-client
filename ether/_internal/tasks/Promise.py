@@ -9,5 +9,3 @@ class Promise:
     def exec(self):
         #Halt on pending results
         pass
-
-    

@@ -1,7 +1,9 @@
 from types import ModuleType
 import inspect
 import importlib.util as imp
+from six import callable
 from ether._internal.classes.ProxyClass import ClassProxy
+from ether._internal.classes.ProxyFunction import ProxyFunction
 #Inspired: https://github.com/pallets/werkzeug/blob/master/werkzeug/__init__.py
 defined_attrs = ['__proxy__', '__underlying__']
 class ProxyModule(ModuleType):
@@ -15,6 +17,8 @@ class ProxyModule(ModuleType):
             attr = self.__underlying__.__getattribute__(name)
             if inspect.isclass(attr):
                 return ClassProxy(attr)
+            if callable(attr):
+                return ProxyFunction(name, attr)
             else:
                 return attr
         else:
