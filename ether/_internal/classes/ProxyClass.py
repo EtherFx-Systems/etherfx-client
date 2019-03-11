@@ -1,4 +1,7 @@
-class ClassProxy(object):
+from ether._internal.classes.ProxyFunction import ProxyFunction
+from six import callable
+
+class ProxyClass(object):
     __slots__ = ["_obj", "__weakref__"]
     def __init__(self, obj):
         object.__setattr__(self, "_obj", obj)
@@ -7,7 +10,11 @@ class ClassProxy(object):
     # proxying (special cases)
     #
     def __getattribute__(self, name):
-        return getattr(object.__getattribute__(self, "_obj"), name)
+        obj = getattr(object.__getattribute__(self, "_obj"), name)
+        if callable(obj):
+            return ProxyFunction(name, obj, obj = object.__getattribute__(self, "_obj"))
+        else:
+            return obj
     def __delattr__(self, name):
         delattr(object.__getattribute__(self, "_obj"), name)
     def __setattr__(self, name, value):

@@ -10,7 +10,7 @@ class EtherLoader(object):
         pass
     
     def find_module(self, fullname, path=None):
-        parent, sep, child = fullname.rpartition('.')
+        parent, _, _ = fullname.rpartition('.')
         if parent and parent == 'ether':
             #Add netcode to check if module exists
             return self
@@ -20,7 +20,6 @@ class EtherLoader(object):
             return None
 
     def load_module(self, fullname):
-        _, sep, child = fullname.rpartition('.')
         module = ProxyModule(fullname)
         if fullname != 'ether':
             module.__dict__['__underlying__'] = self.try_import(fullname)
