@@ -23,7 +23,7 @@ def init(host, port):
     with open('.ether.yml', 'w') as optfile:
         yaml.dump(EtherConfig(host=host, port=port), optfile)
 
-@lru_cache
+@lru_cache(2)
 def get_config():
     if os.path.isfile('.ether.yml'):
         with open('.ether.yml', 'r') as optfile:

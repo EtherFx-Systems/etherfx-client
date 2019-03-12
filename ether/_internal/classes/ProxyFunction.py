@@ -12,7 +12,8 @@ class ProxyFunction:
         self.__obj = obj
 
     def __call__(self, *args, **kwargs):
-        promise = Promise(getmodule(self.__function).__name__,
+        promise = Promise(self.__task_client,
+                          getmodule(self.__function).__name__,
                           self.__name,
                           args,
                           kwargs,
