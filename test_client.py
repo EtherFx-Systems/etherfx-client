@@ -3,10 +3,15 @@ import ether.numpy as enp
 import random
 import time
 
-mylist = [random.randint(0, 100) for i in range(10000000)]
+mylists = [[random.randint(0, 100) for i in range(1000000)] for i in range(3)]
 start = time.time()
-test = np.mean(mylist)
+for i in mylists:
+    test = np.mean(i)
 print("On machine:", time.time() - start)
 start = time.time()
-test2 = enp.mean(mylist).exec()
+prs = []
+for i in mylists:
+    prs.append(enp.mean(i))
+for i in prs:
+    i.exec()
 print("Cluster:",time.time() - start)
