@@ -2,9 +2,10 @@ from ether._internal.classes.ProxyFunction import ProxyFunction
 from six import callable
 
 class ProxyClass(object):
-    __slots__ = ["_obj", "__weakref__"]
+    __slots__ = ["_obj", "__weakref__", "__proxy__"]
     def __init__(self, obj):
         object.__setattr__(self, "_obj", obj)
+        object.__setattr__(self, "__proxy__", True)
     
     #
     # proxying (special cases)
@@ -81,3 +82,8 @@ class ProxyClass(object):
         ins = object.__new__(theclass)
         theclass.__init__(ins, obj, *args, **kwargs)
         return ins
+
+def ProxyClassWrapper(cls):
+    def init_proxy(*args, **kwargs):
+        return ProxyClass(cls(*args, **kwargs))
+    return init_proxy

@@ -17,7 +17,7 @@ class ProxyFunction:
                           self.__name,
                           args,
                           kwargs,
-                          _class = self.__obj.__class__.__name if self.__obj else None)
+                          _class = self.__obj.__class__.__name__ if self.__obj else None)
         promise.ether_send(self.__task_client)
         return promise
         #return self.__function(*args, **kwargs)
