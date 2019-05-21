@@ -28,5 +28,10 @@ s = time.time()
 for latitude, longitude, name, altitude, timezone in coordinates:
   start = pd.Timestamp(datetime.date.today(), tz=timezone)
   end = start + pd.Timedelta(days=30)
+  # I still don't understand why this does not come up as a list of promises.
   ether_fx_data.append(ether_fx_model.get_processed_data(latitude, longitude, start, end))
 print("Time taken (ether fx): ", time.time() - s)
+
+#print(ether_fx_data)
+#start = pd.Timestamp(datetime.date.today())
+#end = start + pd.Timedelta(days=30)
