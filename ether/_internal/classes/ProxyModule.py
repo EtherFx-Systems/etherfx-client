@@ -16,7 +16,7 @@ class ProxyModule(ModuleType):
         elif name != '__dict__':
             attr = self.__underlying__.__getattribute__(name)
             if inspect.isclass(attr):
-                return ProxyClassWrapper(atr)
+                return ProxyClassWrapper(attr)
             if callable(attr):
                 return ProxyFunction(name, attr)
             if inspect.ismodule(attr):
